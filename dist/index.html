@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div id="ball"></div>
+  <div id="cursor-text"></div>
+
+  <div id="scrollDist">
+    <section>
+      <h1 class="reveal-text">
+        Malte is a versatile designer with a focus on <span id="VI">visual identity</span>, <span id="UI">UI</span> and <span id="nabla">3D</span>
+          <br></br>
+          <span><button id="scrollBtn"><h1 id="arrow" class="hover-area" data-cursor-text="LET'S SCROLL">↓</h1></button></span>
+      </h1>
+
+    </section>
+
+  </div>
+
+  <div id="app">
+    <!-- PROJECT GROUP END -->
+
+    <!-- PROJECT GROUP START -->
+    <div id="imgGroup">
+      <img src="assets/Contact-2.gif" data-x="0" data-y="0" alt="CONTACT" class="hover-area"
+        data-cursor-text="CONTACT" content="https://docs.google.com/forms/d/e/1FAIpQLSfvDHYWZApPm9J0S6cSWdpB_X6fhdG-K5zwtJzguVhVfHZtNQ/viewform?embedded=true">
+
+      <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/281fd968746291.5b6861b20f2bf.gif"
+       data-x="-120" data-y="60" alt="PROJECT: AYA" class="hover-area"
+        data-cursor-text="OPEN PROJECT AYA" title=""
+        content="project/aya.html">
+
+      <img src="assets/project-4-1.png" data-x="400" data-y="-100" alt="PROJECT: MARSHLAND" class="hover-area"
+        data-cursor-text="OPEN PROJECT MARSHLAND" title=""
+        content="project/marshland.html">
+
+      <img src="assets/project-3-1.png" data-x="-60" data-y="0" alt="PROJECT: AMBIENT" class="hover-area"
+        data-cursor-text="OPEN PROJECT AMBIENT" title=""
+        content="project/ambient.html">
+
+      <img src="assets/project-2-2.png" data-x="-600" data-y="-200" alt="PROJECT: INTERSTELLAR LAB" class="hover-area"
+        data-cursor-text="OPEN PROJECT INTERSTELLAR LAB" title=""
+        content="mainproject/interstellar.html">
+
+      <img src="assets/Project-1-4.png" data-x="0" data-y="0" alt="PROJECT: DEEP" class="hover-area"
+        data-cursor-text="OPEN PROJECT DEEP" title=""
+        content="mainproject/deep.html">
+
+    </div>
+
+    <!-- PROJECT WINDOW START -->
+    <div id="detail">
+      <div class="links">
+        <p id="link-1">← BACK</p>
+        <div id="center"></div>
+        <div id="detailTxt"></div>
+      </div>
+      <div id="iframeHolder">
+        <iframe src="" height="100%" width="100%" allowfullscreen lazyload
+          frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin" id="iframe-holder">
+        </iframe>
+      </div>
+      </div>
+      <!-- PROJECT WINDOW END -->
+
+      <div>
+      <button id="scrollBtn2"><div class="reveal-text hover-area logo" data-cursor-text="MALTE">
+      </div></button>
+      </div>
+
+      <div class="back">
+      </div>
+
+    <div>
+        <p class="COPYRIGHT">COPYRIGHT © 2023 MALTE SIMON CHRISTENSEN. ALL RIGHTS RESERVED.</p>
+    </div>
+
+      <!-- CURSOR START -->
+      <svg width="100%" height="100%" fill="rgba(245, 245, 247, 1)" stroke="rgba(252, 105, 19, 1)" z-index="2000">
+        <g id="cursor">
+          <circle id="cursorCircle" cx="0" cy="0" r="12" stroke-width="4" />
+        </g>
+      </svg>
+
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js'></script>
+    <script src="./script.js"></script>
+
+
+<!-- CURSOR TOOL TIP START -->
+    <script>
+      $ = function (id) {
+        return document.getElementById(id);
+      }
+
+      var show = function (id) {
+        $(id).style.display = 'block';
+      }
+      var hide = function (id) {
+        $(id).style.display = 'none';
+      }
+    </script>
+
+    <script>
+      var ball = document.getElementById("ball");
+      var cursorText = document.getElementById("cursor-text");
+
+      var hoverAreas = document.querySelectorAll('.hover-area');
+
+      var lastHoveredElement = null;
+
+      function updateCursor(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+
+        var scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        ball.style.left = x + scrollX + "px";
+        ball.style.top = y + scrollY + "px";
+        cursorText.style.left = x + scrollX + "px";
+        cursorText.style.top = y + scrollY + "px";
+
+        if (lastHoveredElement === null) {
+          ball.style.display = 'block';
+          ball.style.height = "0px";
+          ball.style.width = "0px";
+          cursorText.style.opacity = '0';
+        }
+      }
+
+      function handleHoverEnter(e) {
+        cursorText.innerHTML = e.target.getAttribute('data-cursor-text');
+        cursorText.style.opacity = '1';
+        ball.style.height = "80px";
+        ball.style.width = "80px";
+
+        lastHoveredElement = e.target;
+      }
+
+      function handleHoverLeave(e) {
+        cursorText.style.opacity = '0';
+        ball.style.display = 'block';
+
+        lastHoveredElement = null;
+      }
+
+      document.addEventListener('mousemove', updateCursor);
+
+      hoverAreas.forEach(function (elem) {
+        elem.addEventListener('mouseenter', handleHoverEnter);
+        elem.addEventListener('mouseleave', handleHoverLeave);
+      });
+    </script>
+
+    <script>
+    document.getElementById("scrollBtn").addEventListener("click", function() {
+      window.scrollTo(0, 1920);
+    });
+    </script>
+
+    <script>
+    document.getElementById("scrollBtn2").addEventListener("click", function() {
+      window.open("https://docs.google.com/document/d/1VDMZKm2X28qTHGMCpBUOyT9c-E7u8iciY9EU22EhQ30/edit?usp=share_link");
+    });
+    </script>
+
+</body>
+
+</html>
