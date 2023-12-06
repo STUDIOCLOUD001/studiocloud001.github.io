@@ -196,17 +196,6 @@ window.onload = () => {
       cursorY(e.clientY);
     };
   }
-  // create an iframe
-  // function createFrame() {
-  //   frame = document.createElement("iframe");
-  //   frame.setAttribute("src", url("..."));
-  //   frame.setAttribute("id", "frame");
-  //   document.getElementById("iframeHolder").appendChild(frame);
-  // }
-
-  // createFrame();
-  // // add the iframe to the detail div
-  // document.getElementById("detail").appendChild(createFrame);
 
   const allProjects = document.querySelectorAll(".hover-area");
   const iframe = document.querySelector("#iframe-holder");
